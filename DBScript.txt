@@ -1,0 +1,52 @@
+USE [CompiledModelsIssue]
+GO
+/****** Object:  Table [dbo].[TestV]    Script Date: 17/01/2024 10:27:48 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TestV](
+	[Id] [int] NOT NULL,
+	[TestValueId] [int] NOT NULL,
+	[TestValues] [char](10) NOT NULL,
+ CONSTRAINT [PK_TestV] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TestValues]    Script Date: 17/01/2024 10:27:48 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TestValues](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[TestValue] [char](30) NOT NULL,
+ CONSTRAINT [PK_TestValues] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[TestValues] ON 
+GO
+INSERT [dbo].[TestValues] ([Id], [TestValue]) VALUES (1, N'Jo                            ')
+GO
+INSERT [dbo].[TestValues] ([Id], [TestValue]) VALUES (2, N'Joe                           ')
+GO
+INSERT [dbo].[TestValues] ([Id], [TestValue]) VALUES (3, N'John                          ')
+GO
+INSERT [dbo].[TestValues] ([Id], [TestValue]) VALUES (4, N'Johnny                        ')
+GO
+INSERT [dbo].[TestValues] ([Id], [TestValue]) VALUES (5, N'Johnson                       ')
+GO
+INSERT [dbo].[TestValues] ([Id], [TestValue]) VALUES (6, N'James                         ')
+GO
+SET IDENTITY_INSERT [dbo].[TestValues] OFF
+GO
+ALTER TABLE [dbo].[TestV]  WITH CHECK ADD  CONSTRAINT [FK_TestV_TestValues] FOREIGN KEY([TestValueId])
+REFERENCES [dbo].[TestValues] ([Id])
+GO
+ALTER TABLE [dbo].[TestV] CHECK CONSTRAINT [FK_TestV_TestValues]
+GO
